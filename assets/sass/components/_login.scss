@@ -1,0 +1,34 @@
+#login-con {
+	display: grid;
+	place-items: center;
+	height: 70vh;
+}
+
+#login-form {
+	display: flex;
+	flex-direction: column;
+	min-width: 325px;
+	width: 33%;
+
+	h2 {
+		margin-bottom: 1rem;
+	}
+
+	input {
+		margin: 0.5rem 0;
+		padding: 1rem 0.5rem;
+	}
+
+	p {
+		font-size: 1.2rem;
+	}
+	span {
+		font-weight: 700;
+		cursor: pointer;
+
+		&.login-error {
+			color: #e65252;
+			float: right;
+		}
+	}
+}

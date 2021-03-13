@@ -1,0 +1,39 @@
+.swiper-container {
+	width: 100%;
+	height: 300px;
+
+	.swiper-wrapper {
+	}
+
+	.swiper-slide {
+		img {
+			width: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+
+	.swiper-button-prev {
+		color: $white;
+		margin: 0 1rem;
+	}
+	.swiper-button-next {
+		color: $white;
+	}
+
+	.swiper-pagination {
+		height: 20px;
+		.swiper-pagination-bullet {
+			cursor: pointer;
+			background: $white;
+			opacity: 0.5;
+			width: 12px;
+			height: 12px;
+			margin: 0 8px;
+		}
+		.swiper-pagination-bullet-active {
+			background: $white;
+			opacity: 1;
+		}
+	}
+}

@@ -1,0 +1,32 @@
+header {
+	padding: 2rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	.logo {
+		height: 4rem;
+		img {
+			height: 100%;
+		}
+	}
+}
+
+.kabab-menu {
+	width: 1rem;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	cursor: pointer;
+	&:hover {
+		transform: scale(1.1);
+	}
+	.k-dot {
+		width: 0.8rem;
+		height: 0.8rem;
+		border-radius: 50%;
+		background: white;
+	}
+}
