@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon app"
-
   },
   "keywords": [],
   "author": "",
@@ -14,6 +13,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "hbs": "^4.1.1",
-    "http-proxy-middleware": "^1.0.6"
+    "http-proxy-middleware": "^1.0.6",
+    "swiper": "^6.5.0"
   }
 }
