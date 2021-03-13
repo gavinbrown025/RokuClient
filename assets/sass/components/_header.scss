@@ -14,7 +14,6 @@ header {
 
 .kabab-menu {
 	width: 1rem;
-	padding: 5px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -24,8 +23,8 @@ header {
 		transform: scale(1.1);
 	}
 	.k-dot {
-		width: 0.8rem;
-		height: 0.8rem;
+		width: 12px;
+		height: 12px;
 		border-radius: 50%;
 		background: white;
 	}

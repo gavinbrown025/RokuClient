@@ -1,9 +1,11 @@
 import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js';
 import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
 
-import TheMovieThumbnail from './components/TheMovieThumbnailComponent.js';
-import TheSlider from './components/TheSliderComponent.js';
+import TheHeader from './components/TheHeaderComponent.js';
+import TheLanding from './components/TheLandingComponent.js';
 import TheLoginPage from './components/TheLoginComponent.js';
+import TheSlider from './components/TheSliderComponent.js';
+import TheMovieThumbnail from './components/TheMovieThumbnailComponent.js';
 
 (() => {
 
@@ -12,14 +14,29 @@ import TheLoginPage from './components/TheLoginComponent.js';
         data: {
             authenticated: false,
             user: "",
-            featuredMovies: [],
+            featuredMovie: {},
             allMovies: [],
             moviesByYear: {
-                moviesNew: [],
-                movies00s: [],
-                movies90s: [],
-                movies80s: [],
-                moviesOld: [],
+                moviesNew: {
+                    title: 'New Movies',
+                    movies: []
+                },
+                movies00s: {
+                    title: 'Movies from the 2000s',
+                    movies: []
+                },
+                movies90s: {
+                    title: 'Movies from the 1990s',
+                    movies: []
+                },
+                movies80s: {
+                    title: 'Movies from the 1980s',
+                    movies: []
+                },
+                moviesOld: {
+                    title: 'Vintage Movies',
+                    movies: []
+                },
             },
         },
 
@@ -30,7 +47,6 @@ import TheLoginPage from './components/TheLoginComponent.js';
                 this.authenticated = true;
                 this.user = JSON.parse(window.localStorage.getItem('creds')).name;
 
-
                 fetch('/api/movies')
                 .then(res => res.json())
                 .then(data =>{
@@ -38,51 +54,57 @@ import TheLoginPage from './components/TheLoginComponent.js';
                     data.forEach(movie => {
                         this.allMovies.push(movie);
 
+                //* change the date scopes when get new movie content
+
                         if (movie.movies_year >= 2016){
-                            this.moviesByYear.moviesNew.push(movie);
+                            this.moviesByYear.moviesNew.movies.push(movie);
                         }
                         if (movie.movies_year == 2015){
-                            this.moviesByYear.movies00s.push(movie);
+                            this.moviesByYear.movies00s.movies.push(movie);
                         }
                         if (movie.movies_year == 2014){
-                            this.moviesByYear.movies90s.push(movie);
+                            this.moviesByYear.movies90s.movies.push(movie);
                         }
                         if (movie.movies_year == 2013){
-                            this.moviesByYear.movies80s.push(movie);
+                            this.moviesByYear.movies80s.movies.push(movie);
                         }
                         if (movie.movies_year <= 2012) {
-                            this.moviesByYear.moviesOld.push(movie);
+                            this.moviesByYear.moviesOld.movies.push(movie);
                         }
                     });
 
                 }).catch(err => console.log(err));
 
 
-                fetch('/api/featured')
+                fetch('/api/movies/8')
                 .then(res => res.json())
-                .then(data =>{
-                    data.forEach(feature => {
-                        this.featuredMovies.push(feature);
-                    });
-                }).catch(err => console.log(err));
+                .then(data =>{this.featuredMovie = data;})
+                .catch(err => console.log(err));
+
             }
 
         },
+
         mounted() {
 
         },
 
         methods: {
-            userDeny(e){
-                console.log('e');
+            showMovie(movie){
+                console.log(movie,  ' from the main boi');
             }
-
         },
 
         components: {
-            moviethumb: TheMovieThumbnail,
+            theheader: TheHeader,
             login: TheLoginPage,
+            landing: TheLanding,
+            //!signup: TheSignupPage,
+            //!users: TheUserPage,
             slider: TheSlider,
+            moviethumb: TheMovieThumbnail,
+            //!movieinfo: TheMoviePage,
+            //!movieplayer: TheMoviePlayer,
         }
 
     }).$mount("#app");
@@ -92,14 +114,14 @@ import TheLoginPage from './components/TheLoginComponent.js';
 
         effect: 'coverflow',
         centeredSlides: true,
-        slidesPerView: '3',
+        slidesPerView: '2',
+        loop: true,
         coverflowEffect: {
-            loop: true,
-            rotate: 50,
+            rotate: 30,
             stretch: 0,
             depth: 200,
             modifier: 1,
-            slideShadows: true,
+            slideShadows: false,
         },
         navigation: {
             nextEl: '.swiper-button-next',

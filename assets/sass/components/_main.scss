@@ -3,11 +3,13 @@ body {
 	color: $white;
 }
 main {
-	background-color: $bgcolor;
 	width: 100%;
 	min-height: 100vh;
 	max-width: 2400px;
 	overflow-x: hidden;
+}
+main {
+	@include bgGradRadial;
 }
 
 h2 {
@@ -30,6 +32,8 @@ textarea {
 }
 
 .button {
+	display: block;
+	width: max-content;
 	color: $bgcolor;
 	background-color: $white;
 	padding: 1rem;

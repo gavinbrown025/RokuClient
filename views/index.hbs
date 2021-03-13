@@ -1,19 +1,7 @@
-<section class="swiper-container featured">
-    <div class="swiper-wrapper">
-        <moviethumb class="swiper-slide" v-for="item in featuredMovies" :movie="item"></moviethumb>
-    </div>
+<div class="landing">
+    <theheader></theheader>
+    <landing :movie="featuredMovie" class="landing-hero"></landing>
+</div>
 
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-
-    <div class="swiper-pagination"></div>
-
-</section>
-
-
-{{!-- <section class="movies-con allMovies hidden">
-    <moviethumb v-for="item in allMovies" :movie="item" :key="item.movies_id"></moviethumb>
-</section> --}}
-
-
-<slider v-for="era in moviesByYear" :era="era"></slider>
+<slider @show-movie="showMovie" class="swiper-container" v-for="era in moviesByYear" :era="era" :key="era.title">
+</slider>

@@ -5,7 +5,14 @@ export default {
 
     template: `
     <div class="movie-thumb">
-        <img :src="'images/' + movie.movies_cover" alt="movie thumb">
+        <img @click="showMovie(movie)" :src="'images/' + movie.movies_cover" alt="movie thumb">
     </div>
-    `
+    `,
+
+    methods: {
+        showMovie(movie){
+            console.log('in Thumbnail');
+            this.$emit('show-movie', movie);
+        }
+    },
 }

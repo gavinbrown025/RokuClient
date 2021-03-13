@@ -1,0 +1,62 @@
+.landing {
+	max-height: 90vh;
+	overflow: hidden;
+	display: grid;
+	grid-template-rows: auto 1fr;
+
+	header {
+		grid-column: 1/-1;
+		grid-row: 1;
+		z-index: 1;
+	}
+}
+
+.landing-hero {
+	background: rgba(148, 43, 43, 0.479);
+	grid-area: 1/1/-1/-1;
+	z-index: 0;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+
+	video {
+		z-index: -1;
+		grid-area: 1/1/-1/-1;
+		width: 100%;
+		background: rgba(0, 0, 0, 0.705);
+		place-self: top center;
+	}
+}
+
+.feature-info {
+	grid-area: 2/1;
+	padding: 0 3rem;
+	p {
+		font-size: 1.2rem;
+		margin: 1rem 0;
+	}
+}
+
+.feature-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	h3 {
+		font-size: 3rem;
+	}
+}
+
+.feature-meta {
+	display: flex;
+	align-items: center;
+	.button {
+		margin: 0 1rem 0 0;
+	}
+	span {
+		margin: 0 0.5rem;
+	}
+	p {
+		font-size: 1rem;
+	}
+}
