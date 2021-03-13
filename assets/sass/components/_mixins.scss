@@ -1,0 +1,8 @@
+@mixin bgGradRadial() {
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7972fd+0,0a0719+99 */
+	background: rgb(121, 114, 253); /* Old browsers */
+	background: -moz-radial-gradient(top, ellipse cover, rgb(86, 80, 211) 0%, rgba(10, 7, 25, 1) 99%); /* FF3.6-15 */
+	background: -webkit-radial-gradient(top, ellipse cover, rgba(86, 80, 211, 1) 0%, rgba(10, 7, 25, 1) 99%); /* Chrome10-25,Safari5.1-6 */
+	background: radial-gradient(ellipse at top, rgba(86, 80, 211, 1) 0%, rgba(10, 7, 25, 1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7972fd', endColorstr='#0a0719',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}

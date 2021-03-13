@@ -3,7 +3,7 @@ export default {
 
     template:
         `
-        <form method="GET" id="login-form">
+        <form @submit.prevent="storeCreds" method="GET" id="login-form">
             <h2>Log in with your email</h2>
 
             <input type="text" placeholder="Username" v-model="username">
