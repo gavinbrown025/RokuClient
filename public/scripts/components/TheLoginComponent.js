@@ -3,14 +3,14 @@ export default {
 
     template:
         `
-        <form @submit.prevent="storeCreds" method="GET" id="login-form">
+        <form @submit.prevent="login()" id="login-form">
             <h2>Log in with your email</h2>
 
-            <input type="text" placeholder="Username" v-model="username">
+            <input type="text" placeholder="Username" v-model="input.username">
 
-            <input type="password" placeholder="Password" v-model="password">
+            <input type="password" placeholder="Password" v-model="input.password">
 
-            <a @click="storeCreds" class="button">CONTINUE</a>
+            <a @click.prevent="login()" class="button">CONTINUE</a>
 
             <P>New to ROKU?
                 <span @click="showSignUp"> Sign Up</span>
@@ -21,24 +21,50 @@ export default {
 
     data: function() {
         return {
-            username: "",
-            password: "",
+            input:{
+                username: "",
+                password: "",
+            },
             loginmessage: ""
         }
     },
 
     methods: {
-        storeCreds() {
-            if(this.username && this.password){
-                window.localStorage.setItem("creds", JSON.stringify({name: this.username, pword: this.password}));
-                window.location.href = '/home';
+        login() {
+            if (this.input.username !="" && this.input.password !=""){
+                let loginData = JSON.stringify({username: this.input.username, password: this.input.password});
+                window.localStorage.setItem("creds", loginData);
+
+                let url = `/ums/admin/login`;
+
+                fetch(url, {
+                    method: 'POST',
+                    body: loginData,
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.message) {
+                        console.warn("user doesnt exist or something");
+                        this.loginmessage = "user doesnt exist or something";
+                    } else {
+                        data.user_name = this.input.username;
+                        this.$router.replace({name: "users"});
+                    }
+                })
+                .catch(err => console.log(err));
+
             } else {
-                window.localStorage.removeItem("creds");
-                this.loginmessage = 'Failed to Authenticate. Try Again.';
+                this.loginmessage = "Invalid Credentials";
             }
         },
+
         showSignUp(){
             window.location.href = '/signup';
+            //*this.$router.replace({name: "signup"});
         }
     }
 }
