@@ -1,10 +1,3 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-/*Can all be looked up and explained with: http://docs.panic.com/#css*/
-
 html,
 body,
 div,
@@ -93,7 +86,7 @@ video {
 	font: inherit; /*causes the element for which it is specified to take the Computed value of the property from its parent element.*/
 	vertical-align: baseline; /*Align the baseline of the element with the baseline of its parent.*/
 }
-/* HTML5 display-role reset for older browsers */
+
 article,
 aside,
 details,
@@ -107,37 +100,18 @@ nav,
 section {
 	display: block;
 }
-body {
-	line-height: 1;
+
+* {
+	box-sizing: border-box;
 }
+
 ol,
 ul {
 	list-style: none;
 }
+
+//*_________________Specifics___________________________
+
 a {
 	text-decoration: none;
-}
-
-/*Removes quotes from q tag and blockquote tag*/
-blockquote,
-q {
-	quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: "";
-	content: none;
-}
-
-/*In the collapsed border model, adjacent table cells share borders.*/
-/*http://docs.panic.com/#css/border-collapse*/
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-* {
-	box-sizing: border-box;
 }

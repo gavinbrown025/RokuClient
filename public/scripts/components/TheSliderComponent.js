@@ -19,9 +19,11 @@ export default {
     </section>
 
     `,
+    mounted(){
+    },
     methods: {
         showMovie(movie){
-            console.log('from the slider')
+            console.log('from the slider');
             this.$emit('show-movie', movie);
         }
     },

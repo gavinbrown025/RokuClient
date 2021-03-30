@@ -1,6 +1,11 @@
 .swiper-container {
-	height: 300px;
-	margin: 3rem;
+	height: 50vh;
+	max-height: 500px;
+	margin: 6rem 3rem;
+
+	h2 {
+		margin-bottom: 1rem;
+	}
 
 	.swiper-slide {
 		img {
@@ -12,7 +17,6 @@
 
 	.swiper-button-prev {
 		color: $white;
-		margin: 0 1rem;
 	}
 	.swiper-button-next {
 		color: $white;
