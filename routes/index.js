@@ -3,6 +3,12 @@ const router = express.Router();
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
+
+router.get('/', (req, res) => {
+    res.render('index');
+});
+
+
 router.use('/api', createProxyMiddleware({
     target: 'http://localhost:5500',  //!target the server port
     headers: {
@@ -18,14 +24,6 @@ router.use('/ums', createProxyMiddleware({
     },
     changeOrigin: true
 }));
-
-router.get('/', (req, res) => {
-    res.render('index');
-});
-
-// router.get('/home', (req, res) => {
-//     res.render('index');
-// });
 
 router.use((req, res) => {
     res.status(404);

@@ -1,4 +1,6 @@
 body {
+	@include bgGradRadial;
+	background-attachment: fixed;
 	font-family: "Nunito", sans-serif;
 	color: $white;
 }
@@ -8,8 +10,9 @@ main {
 	max-width: 2400px;
 	overflow-x: hidden;
 }
-main {
-	@include bgGradRadial;
+
+.wrapper {
+	min-height: 100vh;
 }
 
 h2 {

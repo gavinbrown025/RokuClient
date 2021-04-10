@@ -1,5 +1,5 @@
 .landing {
-	max-height: 90vh;
+	max-height: 80vh;
 	overflow: hidden;
 	display: grid;
 	grid-template-rows: auto 1fr;
@@ -12,6 +12,7 @@
 }
 
 .landing-hero {
+	position: relative;
 	background: black;
 	grid-area: 1/1/-1/-1;
 	z-index: 0;
@@ -21,9 +22,11 @@
 	grid-template-rows: 1fr 1fr;
 
 	video {
-		z-index: -1;
+		place-self: center;
 		grid-area: 1/1/-1/-1;
-		width: 100%;
+		z-index: -1;
+		min-width: 100%;
+		min-height: 100%;
 		background: rgba(0, 0, 0, 0.705);
 		place-self: top center;
 	}
@@ -58,5 +61,16 @@
 	}
 	p {
 		font-size: 1rem;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.feature-info {
+		grid-area: 2/1/-1/-1;
+		align-self: flex-end;
+		margin-bottom: 5rem;
+	}
+	.feature-desc {
+		display: none;
 	}
 }

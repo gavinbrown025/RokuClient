@@ -1,22 +1,24 @@
+import TheHeader from './TheHeaderComponent.js';
+
 export default {
     name: "TheLoginComponent",
 
-    template:
-        `
-        <form @submit.prevent="login()" id="login-form">
-            <h2>Log in with your email</h2>
+    template:`
+        <section class="login-con">
+            <theheader></theheader>
+            <form @submit.prevent="login()" id="login-form">
+                <h2>Log in with your email</h2>
 
-            <input type="text" placeholder="Username" v-model="input.username">
+                <input type="text" placeholder="Username" v-model="input.username">
+                <input type="password" placeholder="Password" v-model="input.password">
+                <a @click.prevent="login()" class="button">CONTINUE</a>
 
-            <input type="password" placeholder="Password" v-model="input.password">
-
-            <a @click.prevent="login()" class="button">CONTINUE</a>
-
-            <P>New to ROKU?
-                <span @click="showSignUp"> Sign Up</span>
-                <span v-if="loginmessage" class="login-error">{{loginmessage}}</span>
-            </P>
-        </form>
+                <P>New to ROKU?
+                    <span @click="showSignUp"> Sign Up</span>
+                    <span v-if="loginmessage" class="login-error">{{loginmessage}}</span>
+                </P>
+            </form>
+        </section>
     `,
 
     data: function() {
@@ -65,6 +67,9 @@ export default {
         showSignUp(){
             window.location.href = '/signup';
             //*this.$router.replace({name: "signup"});
-        }
+        },
+    },
+    components: {
+        theheader: TheHeader,
     }
 }
