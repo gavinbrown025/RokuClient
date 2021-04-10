@@ -4,15 +4,15 @@ export default {
     props: ['movie'],
 
     template: `
-    <div class="movie-thumb">
-        <img @click="showMovie(movie)" :src="'images/' + movie.movies_cover" alt="movie thumb">
-    </div>
+        <div>
+            <img @click="showMovie(movie)" :src="'images/' + movie.movies_cover" alt="movie thumb">
+        </div>
     `,
 
     methods: {
         showMovie(movie){
             console.log('in Thumbnail');
-            this.$emit('show-movie', movie);
+            this.$emit('showmovie', movie);
         }
     },
 }

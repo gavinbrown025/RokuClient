@@ -1,0 +1,43 @@
+.user-wrapper {
+	display: grid;
+	place-items: center;
+}
+
+.users-con {
+	height: calc(100% - 8rem);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.users-title {
+	font-size: 3rem;
+	margin-bottom: 2rem;
+}
+
+.users {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100;
+}
+
+.user-card {
+	cursor: pointer;
+	min-height: 180px;
+	min-width: 180px;
+	margin: 0 2rem;
+	text-align: center;
+	&:hover img {
+		transform: scale(1.05);
+	}
+	img {
+		transition: transform 250ms ease-in-out;
+	}
+	p {
+		font-size: 2rem;
+	}
+}

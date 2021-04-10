@@ -1,7 +1,7 @@
-#login-con {
+.login-con {
 	display: grid;
 	place-items: center;
-	height: 70vh;
+	height: 100vh;
 }
 
 #login-form {
@@ -17,6 +17,10 @@
 	input {
 		margin: 0.5rem 0;
 		padding: 1rem 0.5rem;
+	}
+
+	.button {
+		width: 100%;
 	}
 
 	p {
