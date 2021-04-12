@@ -24,3 +24,5 @@ Handlebars, Vue, Sass, Node, Express, SQL
 ### License
 
 Gavin Brown, Katie Hodges, Trevor Van Rys, MIT
+
+sass --watch assets/sass:public/css --style compressed --no-source-map

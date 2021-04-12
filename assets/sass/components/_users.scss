@@ -31,11 +31,25 @@
 	min-width: 180px;
 	margin: 0 2rem;
 	text-align: center;
-	&:hover img {
+	&:hover .user-img {
 		transform: scale(1.05);
 	}
-	img {
+	.user-img {
+		overflow: hidden;
+		border: 5px solid $dk-purple;
+		width: 185px;
+		height: 185px;
+		border-radius: 50%;
 		transition: transform 250ms ease-in-out;
+		&.add {
+			border: none;
+		}
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
 	}
 	p {
 		font-size: 2rem;
