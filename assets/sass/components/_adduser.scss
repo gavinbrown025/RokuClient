@@ -1,0 +1,58 @@
+.adduser-con {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(#000, 0.8);
+	display: grid;
+	place-items: center;
+}
+
+.adduser-wrapper {
+	background: #000;
+	padding: 2rem 5rem;
+	h2 {
+		margin-bottom: 2rem;
+	}
+}
+
+#adduser-form {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+}
+
+.adduser-inputs {
+	h3 {
+		font-size: 1.5rem;
+	}
+	.maturity {
+		margin: 0.5rem 0;
+	}
+}
+
+.adduser-img {
+	margin-right: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	img {
+		border-radius: 50%;
+		width: 140px;
+		height: 140px;
+		object-position: center;
+		object-fit: cover;
+		margin-bottom: 4px;
+	}
+}
+
+.adduser-buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1rem;
+	a {
+		width: 100%;
+	}
+}

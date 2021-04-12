@@ -8,12 +8,13 @@ export default {
         if(this.liveuser.user_avatar == null){
             this.liveuser.user_avatar = "temp_avatar.svg"
         }
-        console.log(this.liveuser.user_avatar);
     },
 
     template: `
         <div @click="navToHome()">
-            <img :src="'images/' + liveuser.user_avatar">
+            <div class="user-img">
+                <img :src="'images/' + liveuser.user_avatar">
+            </div>
             <p>{{ liveuser.user_fname }}</p>
         </div>`,
 

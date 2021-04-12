@@ -4,6 +4,14 @@
 	height: 100vh;
 }
 
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+	margin: 0.5rem 0;
+	padding: 1rem 0.5rem;
+	border-radius: 4px;
+}
+
 #login-form {
 	display: flex;
 	flex-direction: column;
@@ -12,11 +20,6 @@
 
 	h2 {
 		margin-bottom: 1rem;
-	}
-
-	input {
-		margin: 0.5rem 0;
-		padding: 1rem 0.5rem;
 	}
 
 	.button {

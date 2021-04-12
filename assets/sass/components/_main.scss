@@ -3,6 +3,7 @@ body {
 	background-attachment: fixed;
 	font-family: "Nunito", sans-serif;
 	color: $white;
+	overflow-x: hidden;
 }
 main {
 	width: 100%;
@@ -35,6 +36,8 @@ textarea {
 }
 
 .button {
+	border: none;
+	cursor: pointer;
 	display: block;
 	width: max-content;
 	color: $bgcolor;
@@ -48,8 +51,12 @@ textarea {
 }
 
 input {
-	background: $white;
+	color: $white;
+	background: rgba($white, 0.25);
 	font-size: 1.2rem;
 	border-radius: 2px;
-	border: 1px solid #aaa;
+	border: none;
+	&::placeholder {
+		color: $white;
+	}
 }

@@ -8,10 +8,9 @@ export default {
             <theheader></theheader>
             <form @submit.prevent="login()" id="login-form">
                 <h2>Log in with your email</h2>
-
                 <input type="text" placeholder="Username" v-model="input.username">
                 <input type="password" placeholder="Password" v-model="input.password">
-                <a @click.prevent="login()" class="button">CONTINUE</a>
+                <button type="submit" @submit.prevent="login()" class="button">CONTINUE</button>
 
                 <P>New to ROKU?
                     <span @click="showSignUp"> Sign Up</span>
@@ -34,6 +33,7 @@ export default {
     methods: {
         login() {
             if (this.input.username !="" && this.input.password !=""){
+
                 let loginData = JSON.stringify({username: this.input.username, password: this.input.password});
                 window.localStorage.setItem("creds", loginData);
 
@@ -50,8 +50,8 @@ export default {
                 .then(res => res.json())
                 .then(data => {
                     if(data.message) {
-                        console.warn("user doesnt exist or something");
-                        this.loginmessage = "user doesnt exist or something";
+                        console.warn("user doesnt exist or something broke");
+                        this.loginmessage = data.message;
                     } else {
                         data.user_name = this.input.username;
                         this.$router.replace({name: "users"});
@@ -60,7 +60,7 @@ export default {
                 .catch(err => console.log(err));
 
             } else {
-                this.loginmessage = "Invalid Credentials";
+                this.loginmessage = "Please fill in required fields";
             }
         },
 
