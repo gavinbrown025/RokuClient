@@ -11,8 +11,7 @@ export default {
 
     methods: {
         showMovie(movie){
-            console.log('in Thumbnail');
-            this.$emit('showmovie', movie);
+            this.$router.push({ name: "details", params: {currentmovie: movie.movies_id}});
         }
     },
 }

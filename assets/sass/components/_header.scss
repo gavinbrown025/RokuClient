@@ -20,11 +20,9 @@ header {
 		}
 	}
 }
-.landing .header-home {
-	display: flex;
-}
+
 .header-home {
-	display: none;
+	display: flex;
 	padding-left: 2rem;
 	flex-grow: 1;
 	flex-direction: row;
@@ -38,30 +36,36 @@ header {
 		}
 	}
 }
+
 .header-meta {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	.search {
-		display: flex;
-		align-items: center;
-		img {
-			height: 1.5rem;
+}
+
+.search {
+	display: flex;
+	align-items: center;
+	img {
+		height: 1.5rem;
+		cursor: pointer;
+		&:hover {
+			transform: scale(1.05);
 		}
-		.search-bar {
-			width: 240px;
-			background: transparent;
-			border-radius: 0;
-			border-bottom: 2px solid $white;
-			text-align: right;
-			padding-bottom: 4px;
-			margin-right: 0.5rem;
-			font-size: 1.5rem;
-			&:focus,
-			&:hover {
-				outline: none;
-				background: rgba(#000, 0.5);
-			}
+	}
+	.search-bar {
+		width: 240px;
+		background: transparent;
+		border-radius: 0;
+		border-bottom: 2px solid $white;
+		text-align: right;
+		padding-bottom: 4px;
+		margin-right: 0.5rem;
+		font-size: 1.5rem;
+		&:focus,
+		&:hover {
+			outline: none;
+			background: rgba(#000, 0.5);
 		}
 	}
 }
@@ -85,30 +89,6 @@ header {
 	}
 }
 
-.kabab-menu {
-	width: 1rem;
-	height: 4.5rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-	cursor: pointer;
-	transition: transform 250ms ease-out;
-	&:hover {
-		transform: scale(1.05);
-		transform-origin: center;
-	}
-	.k-dot {
-		width: 12px;
-		height: 12px;
-		border-radius: 50%;
-		background: white;
-	}
-}
-.landing .kabab-menu {
-	display: none;
-}
-
 .user-dropdown {
 	position: absolute;
 	background: #000;
@@ -124,12 +104,23 @@ header {
 	&.show {
 		transform: translateX(0);
 	}
-	.user-avatar-icon {
-		margin-bottom: 1rem;
+	.dropdown-meta {
+		display: flex;
+		align-items: center;
+		.user-avatar-icon {
+			margin: 0 0 1rem 1rem;
+		}
+		p {
+			font-size: 1.5rem;
+			font-weight: 700;
+		}
 	}
 	ul li {
-		padding: 1rem 2rem;
 		text-align: right;
+		a {
+			display: block;
+			padding: 1rem 2rem;
+		}
 		&:hover {
 			background: $dk-grey;
 		}

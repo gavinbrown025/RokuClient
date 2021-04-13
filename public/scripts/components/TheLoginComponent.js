@@ -3,6 +3,17 @@ import TheHeader from './TheHeaderComponent.js';
 export default {
     name: "TheLoginComponent",
 
+    data() {
+        return {
+            input:{
+                username: "",
+                password: "",
+            },
+            loginmessage: "",
+            showsignup: false
+        }
+    },
+
     template:`
         <section class="login-con">
             <theheader></theheader>
@@ -19,16 +30,6 @@ export default {
             </form>
         </section>
     `,
-
-    data: function() {
-        return {
-            input:{
-                username: "",
-                password: "",
-            },
-            loginmessage: ""
-        }
-    },
 
     methods: {
         login() {
@@ -65,8 +66,7 @@ export default {
         },
 
         showSignUp(){
-            window.location.href = '/signup';
-            //*this.$router.replace({name: "signup"});
+            this.showsignup = this.showsignup ? false : true;
         },
     },
     components: {
