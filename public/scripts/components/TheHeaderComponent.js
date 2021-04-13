@@ -1,11 +1,21 @@
+import EditUserComponent from './TheEditUserComponent.js';
+
 export default {
 
     name: 'TheHeaderComponent',
 
     data() {
         return {
+            liveuser: undefined,
             showsettings: false,
             showsearch: false,
+            showEditUser: false
+        }
+    },
+
+    created() {
+        if(localStorage.getItem('cacheduser')){
+            this.liveuser = JSON.parse(localStorage.getItem('cacheduser'));
         }
     },
 
@@ -15,7 +25,7 @@ export default {
                 <img src="images/roku-logo.png" alt="Roku Logo">
             </div>
 
-            <div class="header-home">
+            <div v-if="liveuser" class="header-home">
                 <nav class="main-nav">
                     <ul>
                         <li>
@@ -34,38 +44,37 @@ export default {
                 </nav>
 
                 <div class="header-meta">
-                    <div class="search">
+                    <form @submit.prevent="search" class="search">
                         <input :class="{'show' : showsearch}" class="search-bar" type="text">
-                        <img @click="showSearch" src="images/search.svg" alt="search icon">
-                    </div>
+                        <img @click="search" src="images/search.svg" alt="search icon">
+                    </form>
                     <div class="user-avatar-icon">
-                        <img @click="showSettings" src="images/temp_avatar.svg" alt="user avatar">
+                        <img @click="showSettings" :src="'images/'+liveuser.user_avatar" alt="user avatar">
                     </div>
                 </div>
-            </div>
 
-            <div @click="showSettings" class="kabab-menu">
-                <div class="k-dot"></div>
-                <div class="k-dot"></div>
-                <div class="k-dot"></div>
-            </div>
-
-            <div :class="{'show' : showsettings}" class="user-dropdown">
-                <div class="user-avatar-icon">
-                    <img @click="showSettings" src="images/temp_avatar.svg" alt="user avatar">
+                <div :class="{'show' : showsettings}" class="user-dropdown">
+                    <div class="dropdown-meta">
+                        <p>{{liveuser.user_fname}}</p>
+                        <div class="user-avatar-icon">
+                            <img @click="showSettings" :src="'images/'+liveuser.user_avatar" alt="user avatar">
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <router-link to="/users">Switch User</router-link>
+                        </li>
+                        <li>
+                            <a @click.prevent="editUserLB">Edit Profile</a>
+                        </li>
+                        <li @click="$emit('logout')">
+                            <a>Logout</a>
+                        </li>
+                    </ul>
                 </div>
-                <ul>
-                    <li>
-                        <router-link to="/users">Switch User</router-link>
-                    </li>
-                    <li>
-                        <a @click.prevent="$emit('showedituser')">Edit Profile</a>
-                    </li>
-                    <li>
-                        <router-link to="/home">Logout</router-link>
-                    </li>
-                </ul>
             </div>
+
+            <edit-user @closeedituser="editUserLB" v-if="showEditUser"/>
         </header>
     `,
     methods: {
@@ -74,6 +83,16 @@ export default {
         },
         showSearch(){
             this.showsearch = this.showsearch ? false : true;
-        }
-    }
+        },
+
+        editUserLB(){
+            this.showEditUser = this.showEditUser ? false : true;
+        },
+        search() {
+            console.log('search');
+        },
+    },
+    components: {
+		'edit-user': EditUserComponent,
+	}
 }

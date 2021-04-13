@@ -17,7 +17,7 @@ export default {
             <div class="users">
 			    <user class="user-card" v-for="(user, index) in userList" :liveuser="user" :key="index"></user>
 
-                <div class="user-card" @click="EditUserLB">
+                <div class="user-card" @click="editUserLB">
                     <div class="user-img add">
                         <img src="images/add_user.svg">
                     </div>
@@ -25,8 +25,8 @@ export default {
                 </div>
             </div>
 
-            <edit-user @closeedituser="EditUserLB" v-if="showEditUser"/>
         </section>
+        <edit-user @closeedituser="editUserLB" v-if="showEditUser"/>
     </div>
 	`,
 
@@ -48,8 +48,8 @@ export default {
             .catch(err => console.error(err));
 	},
     methods: {
-        EditUserLB(){
-            this.showAddUser = this.showAddUser ? false : true;
+        editUserLB(){
+            this.showEditUser = this.showEditUser ? false : true;
         }
     },
 
