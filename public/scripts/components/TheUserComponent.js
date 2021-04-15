@@ -5,7 +5,7 @@ export default {
     props: ['liveuser'],
 
     created() {
-        if(this.liveuser.user_avatar == null){
+        if(this.liveuser.user_avatar == ""){
             this.liveuser.user_avatar = "temp_avatar.svg"
         }
     },

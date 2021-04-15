@@ -62,3 +62,55 @@ input {
 		color: $white;
 	}
 }
+
+input[type="range"] {
+	-webkit-appearance: none;
+	width: 100%;
+	background: transparent;
+
+	&::-webkit-slider-thumb {
+		margin: -0.25rem;
+		@include thumb();
+	}
+	&::-moz-range-thumb {
+		@include thumb();
+	}
+	&::-ms-thumb {
+		@include thumb();
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 8px rgb(0, 94, 55);
+	}
+
+	&::-webkit-slider-runnable-track {
+		@include track();
+	}
+
+	&::-moz-range-track {
+		@include track();
+	}
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: $bgcolor rgba(0, 0, 0, 0.5);
+	&::-webkit-scrollbar {
+		height: 8px;
+		width: 8px;
+		opacity: 0.8;
+		margin: 0.25rem;
+	}
+	&::-webkit-scrollbar-track {
+		background: $dk-purple;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: $bgcolor;
+		border-radius: 6px;
+
+		&:hover {
+			background: $bgcolor;
+		}
+	}
+}

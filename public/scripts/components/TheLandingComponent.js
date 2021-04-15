@@ -12,7 +12,7 @@ export default {
                 </div>
                 <p class="feature-desc">{{featuredMovie.movies_storyline}}</p>
                 <div class="feature-meta">
-                    <a class="button">PLAY MOVIE</a>
+                    <a @click="showMovie(featuredMovie)" class="button">PLAY MOVIE</a>
                     <p class="movie-rating">{{featuredMovie.movies_year}}</p>
                     <span>|</span>
                     <p class="movie-runtime">{{featuredMovie.movies_runtime}}</p>
@@ -24,6 +24,10 @@ export default {
     methods: {
         playPreview(){
             this.$refs.featurePreview.play();
+        },
+        showMovie(movie){
+            window.localStorage.setItem('selectedMovie', JSON.stringify(movie));
+            this.$router.push({ name: "details"});
         }
     }
 }

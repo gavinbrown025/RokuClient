@@ -11,9 +11,9 @@ export default {
 
     created() {
 
-        let pushedMovie = localStorage.getItem('selectedMovie');
+        let pushedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
 
-         fetch(`api/movies/${pushedMovie}`)
+         fetch(`api/movies/${pushedMovie.movies_id}`)
             .then(res => res.json())
             .then(data => {
                 this.selectedMovie = data;
@@ -35,7 +35,7 @@ export default {
                 <div class="details-info-con">
                     <div class="details-play">
                         <h2>{{selectedMovie.movies_title}}</h2>
-                        <a class="button">PLAY MOVIE</a>
+                        <router-link :to="{name: 'video'}" class="button">PLAY MOVIE</router-link>
                     </div>
 
                     <div class="details-info">

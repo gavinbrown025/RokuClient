@@ -7,7 +7,7 @@ export default {
 
 	template: `
 	<div class="wrapper user-wrapper">
-        <theheader></theheader>
+        <theheader @logout="$emit('logout')"></theheader>
 
         <section class="users-con">
 			<div class="users-title">
@@ -40,7 +40,9 @@ export default {
     },
 
 	created() {
-        fetch(`/ums/admin/getusers`)
+        let account = localStorage.getItem('account');
+
+        fetch(`/ums/admin/getusers/${account}`)
             .then(res => res.json())
             .then(data => {
                 this.userList = data;
