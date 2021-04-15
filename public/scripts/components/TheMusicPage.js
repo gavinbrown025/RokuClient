@@ -4,7 +4,7 @@ export default {
     name: 'TheMusicPage',
 
       data() {
-        return ({
+        return {
             current: {},
             index: 0,
             isPlaying: false,
@@ -12,7 +12,7 @@ export default {
             player: new Audio(),
             query: "",
             currentTime: 0,
-        })
+        }
     },
 
     template:`
@@ -48,9 +48,9 @@ export default {
 
         <section class="playlist">
             <div
-            v-for="song in songs"
+            v-for="(song, index) in songs"
             :key="song.id"
-            @click="play(song)"
+            @click="play(song, index)"
             :class="(song.id == current.id) ? 'song playing' : 'song' ">
                 <p>{{song.artist.name}} - {{song.title}}</p>
                 <span>{{getCurrentTime(song.duration)}}</span>
@@ -84,70 +84,70 @@ export default {
             });
         },
 
-        play(song) {
-        if (typeof song.preview != "undefined") {
-            this.current = song;
-            this.index = song.index;
-            this.player.src = this.current.preview;
-        }
+        play(song, index) {
+            if (typeof song.preview != "undefined") {
+                this.current = song;
+                this.index = index;
+                this.player.src = this.current.preview;
+            }
 
-        this.player.play();
-        this.player.addEventListener("ended", this.next);
+            this.player.play();
+            this.player.addEventListener("ended", this.next);
 
-        this.isPlaying = true;
+            this.isPlaying = true;
         },
 
         pause() {
-        this.player.pause();
-        this.isPlaying = false;
+            this.player.pause();
+            this.isPlaying = false;
         },
 
         next() {
-        this.index++;
-        if (this.index >= this.songs.length - 1) {
-            this.index = 0;
-        }
-        this.current = this.songs[this.index];
-        this.play(this.current);
+            this.index ++;
+            if (this.index >= this.songs.length - 1) {
+                 this.index = 0;
+            }
+            this.current = this.songs[this.index];
+            this.play(this.current, this.index);
         },
 
         prev() {
-        this.index--;
-        if (this.index < 0) {
-            this.index = this.songs.length - 1;
-        }
-        this.current = this.songs[this.index];
-        this.play(this.current);
+            this.index--;
+            if (this.index < 0) {
+                this.index = this.songs.length - 1;
+            }
+            this.current = this.songs[this.index];
+            this.play(this.current, this.index);
         },
 
         removeSong(e) {
-        this.songs = this.songs.filter((song) => song.id !== e.id);
+            this.songs = this.songs.filter((song) => song.id !== e.id);
         },
 
         getCurrentTime(time) {
-        let minute = Math.floor(time / 60);
-        let second = Math.floor(time - minute * 60);
-        second = second > 9 ? second : `0${second}`;
-        minute = minute > 9 ? minute : `0${minute}`;
-        let formatTime = `${minute}:${second}`;
-        return formatTime;
+            let minute = Math.floor(time / 60);
+            let second = Math.floor(time - minute * 60);
+            second = second > 9 ? second : `0${second}`;
+            minute = minute > 9 ? minute : `0${minute}`;
+            let formatTime = `${minute}:${second}`;
+            return formatTime;
         },
 
         timeTrack() {
-        this.$refs.timePos.value =
-            (this.player.currentTime / this.current.duration) * 100;
+            this.$refs.timePos.value =
+                (this.player.currentTime / this.current.duration) * 100;
 
-        this.currentTime = this.player.currentTime;
+            this.currentTime = this.player.currentTime;
         },
 
         updatePlayTime(e) {
-        let scrubTime = (e.target.value * this.current.duration) / 100;
-        this.player.currentTime = scrubTime;
+            let scrubTime = (e.target.value * this.current.duration) / 100;
+            this.player.currentTime = scrubTime;
         },
 
         addEventListener() {
-        this.player.addEventListener("timeupdate", this.timeTrack);
-        this.$refs.timePos.addEventListener("input", this.updatePlayTime);
+            this.player.addEventListener("timeupdate", this.timeTrack);
+            this.$refs.timePos.addEventListener("input", this.updatePlayTime);
         },
     },
     components:{

@@ -11,7 +11,7 @@ export default {
 
     methods: {
         showMovie(movie){
-            window.localStorage.setItem('selectedMovie', movie.movies_id);
+            window.localStorage.setItem('selectedMovie', JSON.stringify(movie));
             this.$router.push({ name: "details"});
         }
     },

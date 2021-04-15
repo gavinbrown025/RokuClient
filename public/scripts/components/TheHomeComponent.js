@@ -37,15 +37,15 @@ export default {
     },
 
     created() {
-        this.loadMedia(null, 'movies');
+        this.loadMedia(null);
         if(this.currentuser){
             this.$emit('setuser', this.currentuser);
         }
     },
 
     methods:{
-        loadMedia(filter, mediaType){
-            let url = (filter == null) ? `api/${mediaType}` : `api/${mediaType}/${filter}`;
+        loadMedia(filter){
+            let url = (filter == null) ? `api/movies` : `api/movies/filter/${filter}`;
 
             fetch(url)
             .then(res => res.json())

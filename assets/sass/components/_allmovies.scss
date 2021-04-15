@@ -1,0 +1,46 @@
+.allmovies-con header {
+	position: static;
+}
+
+.allmovies-filter-con {
+	display: flex;
+	flex-direction: column;
+	padding: 3rem;
+	h2 {
+		cursor: pointer;
+		margin-bottom: 2rem;
+		span {
+			font-weight: normal;
+			margin-left: 0.5rem;
+			font-size: 1.8rem;
+		}
+	}
+	.allmovies-filter span {
+		font-size: 1.5rem;
+		margin: 0.5rem;
+		&:first-of-type {
+			margin-left: 0;
+		}
+		&:nth-of-type(odd) {
+			cursor: pointer;
+		}
+	}
+}
+
+.allmovies-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	margin-bottom: 2rem;
+	.allmovies-thumb {
+		cursor: pointer;
+		height: 100%;
+		padding: 1rem;
+		transition: transform 250ms ease-out;
+		img {
+			width: 100%;
+		}
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
+}
