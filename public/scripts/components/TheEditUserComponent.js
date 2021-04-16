@@ -1,4 +1,4 @@
-
+import TheAvatarComponent from "./TheAvatarComponent.js";
 
 export default {
 
@@ -31,9 +31,9 @@ export default {
                 <h2>{{title}}</h2>
                 <form id="adduser-form" @submit.prevent="addUser()" class="adduser">
 
-                    <div v-if="userData.avatar" @click="seeAvatars" class="adduser-img">
+                    <div v-if="userData.avatar" @click="seeAvatars" class="avatar-img">
                         <img :src="'images/'+userData.avatar" alt="add user icon">
-                        <p>{{userData.avatar}}</p>
+                        <p>Select Avatar</p>
                     </div>
 
                     <div v-else @click="seeAvatars" class="adduser-img">
@@ -42,7 +42,7 @@ export default {
                     </div>
 
                     <div class="adduser-inputs">
-                        <h3>Name</h3>
+                        <label>Name</label>
                         <input v-model="userData.fname" name="name" type="text">
 
                         <div class="maturity">
@@ -67,12 +67,13 @@ export default {
                     <a class="button" @click.prevent="$emit('closeedituser')"href="">Cancel</a>
                 </div>
             </div>
-            <div v-if="showAvatars" class="avatar-list-con">
-                <h2>Select Avatar</h2>
-                <div class="avatars">
-                    <img @click="selectAvatar(image.avatar)" v-for="image in avatarList" :src="'images/'+image.avatar" alt="avatar option"/>
-                </div>
-            </div>
+
+            <avatar-select
+                v-if="showAvatars"
+                @seeavatars="seeAvatars"
+                @selectavatar="selectAvatar">
+            </avatar-select>
+
         </section>
     `,
 
@@ -124,4 +125,9 @@ export default {
             this.showAvatars = false;
         }
     },
+
+    components:{
+        'avatar-select': TheAvatarComponent
+    }
+
 }

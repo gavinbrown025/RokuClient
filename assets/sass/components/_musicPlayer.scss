@@ -5,12 +5,10 @@
 	grid-template-rows: auto auto 1fr auto auto;
 	place-items: center;
 	min-height: 100vh;
-	header {
-		position: static;
-		.search {
-			display: none;
-		}
+	header .search {
+		display: none;
 	}
+
 	.controls {
 		width: 33%;
 		min-width: 300px;
@@ -62,6 +60,7 @@
 }
 
 .music-wrapper .search {
+	display: inherit;
 	padding: 2rem;
 	justify-content: flex-end;
 }

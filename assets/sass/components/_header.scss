@@ -1,7 +1,4 @@
 header {
-	position: absolute;
-	top: 0;
-	left: 0;
 	z-index: 2;
 	width: 100%;
 	padding: 1rem 2rem;
@@ -13,7 +10,6 @@ header {
 		color: $white;
 		font-size: 1.2rem;
 	}
-
 	.logo {
 		height: 3rem;
 		img {
@@ -45,7 +41,8 @@ header {
 }
 
 .search {
-	display: flex;
+	margin-right: 1rem;
+	display: none; //* doesnt work right now so its hidden
 	align-items: center;
 	img {
 		height: 1.5rem;
@@ -70,6 +67,24 @@ header {
 		}
 	}
 }
+.dropdown-arrow-con {
+	display: none;
+	padding: 0.5rem;
+	background: $white;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: transform 200ms ease-out;
+	&:hover {
+		transform: scale(1.05);
+	}
+	.dropdown-arrow {
+		height: 1rem;
+		width: 1rem;
+		border-bottom: 4px solid $dk-purple;
+		border-right: 4px solid $dk-purple;
+		transform: translateY(-25%) rotate(45deg);
+	}
+}
 
 .user-avatar-icon {
 	width: 4rem;
@@ -77,7 +92,7 @@ header {
 	border-radius: 50%;
 	overflow: hidden;
 	transition: transform 200ms ease-out;
-	margin-left: 2rem;
+	margin-left: 1rem;
 	&:hover {
 		transform: scale(1.05);
 	}
@@ -125,5 +140,17 @@ header {
 		&:hover {
 			background: $dk-grey;
 		}
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.header-home {
+		justify-content: flex-end;
+	}
+	.main-nav {
+		display: none;
+	}
+	.dropdown-arrow-con {
+		display: inherit;
 	}
 }
