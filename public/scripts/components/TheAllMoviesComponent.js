@@ -52,7 +52,6 @@ export default {
             fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 this.retrievedMedia = data;
             })
             .catch(err => console.log(err));

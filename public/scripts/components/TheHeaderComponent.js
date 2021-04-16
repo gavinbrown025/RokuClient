@@ -48,6 +48,9 @@ export default {
                         <input :class="{'show' : showsearch}" class="search-bar" type="text">
                         <img @click="search" src="images/search.svg" alt="search icon">
                     </form>
+                    <div @click="showSettings" class="dropdown-arrow-con">
+                        <div class="dropdown-arrow"></div>
+                    </div>
                     <div class="user-avatar-icon">
                         <img @click="showSettings" :src="'images/'+liveuser.user_avatar" alt="user avatar">
                     </div>
@@ -61,6 +64,18 @@ export default {
                         </div>
                     </div>
                     <ul>
+                        <li class="res-nav">
+                            <router-link to="/home">Home</router-link>
+                        </li>
+                        <li class="res-nav">
+                            <router-link to="/movies">All Movies</router-link>
+                        </li>
+                        <li class="res-nav">
+                            <router-link to="/music">Music</router-link>
+                        </li>
+                        <li class="res-nav">
+                            <router-link to="/kids">Kids</router-link>
+                        </li>
                         <li>
                             <router-link to="/users">Switch User</router-link>
                         </li>

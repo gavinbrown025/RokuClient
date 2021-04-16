@@ -1,10 +1,14 @@
 import TheLoginPage from './components/TheLoginComponent.js';
+import TheSignupComponent from './components/TheSignupComponent.js';
+
 import TheAllUsersPage from './components/TheAllUsersPage.js';
 import TheAllMoviesPage from './components/TheAllMoviesComponent.js';
+
 import TheHomePage from './components/TheHomeComponent.js';
 import TheDetailsPage from './components/TheDetailsComponent.js';
-import TheMusicPage from './components/TheMusicPage.js';
 import TheVideoPlayerPage from './components/TheVideoPlayerPage.js';
+
+import TheMusicPage from './components/TheMusicPage.js';
 
 
 const router = new VueRouter({
@@ -18,6 +22,7 @@ const router = new VueRouter({
             }
         }},
 
+        {path: '/signup', name: 'signup', component: TheSignupComponent},
         {path: '/users', name: 'users', component: TheAllUsersPage},
         {path: '/home', name: 'home', component: TheHomePage, props: true},
         {path: '/movies', name: 'movies', component: TheAllMoviesPage},

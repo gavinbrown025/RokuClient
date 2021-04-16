@@ -37,6 +37,10 @@ textarea {
 	display: none;
 }
 
+.highlight {
+	color: $highlight;
+}
+
 .button {
 	border: none;
 	cursor: pointer;
@@ -61,6 +65,14 @@ input {
 	&::placeholder {
 		color: $white;
 	}
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+	margin: 0.5rem 0;
+	padding: 1rem 0.5rem;
+	border-radius: 4px;
 }
 
 input[type="range"] {
