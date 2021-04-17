@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="182.099" height="182.099" viewBox="0 0 182.099 182.099">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_16" data-name="Ellipse 16" cx="91.049" cy="91.049" r="91.049" transform="translate(0)" fill="none"/>
+    </clipPath>
+    <filter id="KIDS" x="8.604" y="26.423" width="159.159" height="129.273" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Kids_Avatar" data-name="Kids Avatar" transform="translate(-9.577 -10.381)">
+    <g id="Group_45" data-name="Group 45" transform="translate(9.577 10.381)" clip-path="url(#clip-path)">
+      <rect id="Rectangle_37" data-name="Rectangle 37" width="182.099" height="182.099" transform="translate(0 0)" fill="#ff7900"/>
+      <g id="Group_44" data-name="Group 44" transform="translate(0 0)">
+        <path id="Path_41" data-name="Path 41" d="M1740.169,268.235V86.136h182.1Z" transform="translate(-1740.169 -86.136)" fill="#ff00a4"/>
+        <path id="Path_42" data-name="Path 42" d="M1922.268,268.235h-182.1V86.136Z" transform="translate(-1740.169 -86.136)" fill="#fff800"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#KIDS)">
+        <text id="KIDS-2" data-name="KIDS" transform="translate(32.83 127.46) rotate(-21.02)" fill="#fff" font-size="54" font-family="Nunito-Bold, Nunito" font-weight="700"><tspan x="0" y="0">KIDS</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,5 +1,5 @@
 .landing {
-	max-height: 80vh;
+	max-height: 85vh;
 	overflow: hidden;
 	display: grid;
 	grid-template-rows: auto 1fr;
@@ -21,7 +21,7 @@
 	z-index: 0;
 
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 2fr 1fr;
 	grid-template-rows: 1fr 1fr;
 
 	video {
@@ -37,7 +37,7 @@
 
 .feature-info {
 	grid-area: 2/1;
-	padding: 0 3rem;
+	padding: 2rem 3rem;
 	p {
 		font-size: 1.2rem;
 		margin: 1rem 0;

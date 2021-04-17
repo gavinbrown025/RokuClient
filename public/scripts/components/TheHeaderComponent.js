@@ -14,6 +14,7 @@ export default {
     },
 
     created() {
+
         if(localStorage.getItem('cacheduser')){
             this.liveuser = JSON.parse(localStorage.getItem('cacheduser'));
         }
@@ -36,9 +37,6 @@ export default {
                         </li>
                         <li>
                             <router-link to="/music">Music</router-link>
-                        </li>
-                        <li>
-                            <router-link to="/kids">Kids</router-link>
                         </li>
                     </ul>
                 </nav>
@@ -72,9 +70,6 @@ export default {
                         </li>
                         <li class="res-nav">
                             <router-link to="/music">Music</router-link>
-                        </li>
-                        <li class="res-nav">
-                            <router-link to="/kids">Kids</router-link>
                         </li>
                         <li>
                             <router-link to="/users">Switch User</router-link>

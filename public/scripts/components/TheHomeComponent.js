@@ -8,7 +8,7 @@ export default {
 
     data() {
         return {
-            currentuser:{},
+            currentUser: undefined,
             retrievedMedia: [],
             currentMedia: {},
             sortedMedia: {
@@ -37,15 +37,19 @@ export default {
     },
 
     created() {
-        this.loadMedia(null);
-        if(this.currentuser){
-            this.$emit('setuser', this.currentuser);
+        this.currentUser = JSON.parse(localStorage.getItem('cacheduser'))
+        if(!this.currentUser) {
+            this.$router.replace({ name: 'root'})
         }
+
+        this.loadMedia(this.currentUser.user_access);
+
     },
 
     methods:{
-        loadMedia(filter){
-            let url = (filter == null) ? `api/movies` : `api/movies/filter/${filter}`;
+        loadMedia(rating){
+
+            let url = `api/movies/${rating}`;
 
             fetch(url)
             .then(res => res.json())

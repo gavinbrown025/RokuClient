@@ -40,12 +40,28 @@ const router = new VueRouter({
             currentUser: undefined,
             isAdmin: false,
         },
+
+        created() {
+            this.authenticateUser();
+        },
+        updated() {
+            this.authenticateUser();
+        },
+
         methods: {
-            authenticateUser(user) {
-                this.currentUser = user;
-                this.authenticated = true;
-                if(user.user_admin > 0){
-                    this.isAdmin = true;
+            authenticateUser() {
+                if(localStorage.getItem('cacheduser')){
+                    this.currentUser = JSON.parse(localStorage.getItem('cacheduser'))
+                    this.authenticated = true;
+
+                    if(this.currentUser.user_admin > 0){
+                        this.isAdmin = true;
+                    }
+                    if(this.currentUser.user_access <=2){
+                        document.querySelector('#app').classList.add('kids');
+                    } else {
+                        document.querySelector('#app').classList.remove('kids');
+                    }
                 }
             },
 
@@ -53,8 +69,13 @@ const router = new VueRouter({
                 if(localStorage.getItem('cacheduser')){
                     localStorage.removeItem('cacheduser');
                 }
-                this.$router.push({ name: "root"});
+
+                document.querySelector('#app').classList.remove('kids');
                 this.currentUser = undefined;
+                this.authenticated = false;
+                this.isAdmin = false;
+
+                this.$router.push({ name: "root"});
             }
         },
         router

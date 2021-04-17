@@ -3,10 +3,11 @@ import TheMovieThumbnail from './TheMovieThumbnailComponent.js';
 
 export default {
 
-    name:"AllMoviesPage",
+    name: "AllMoviesPage",
 
     data() {
         return {
+            currentUser: {},
             retrievedMedia: [],
             filter: null
         }
@@ -35,20 +36,22 @@ export default {
     `,
 
     created() {
-        this.loadMedia(null);
+        this.currentUser = JSON.parse(localStorage.getItem('cacheduser'));
+        this.loadMedia(null, this.currentUser.user_access);
     },
 
     methods:{
         setFilter(filter){
             this.filter = filter;
             if(filter === 'All'){
-                this.loadMedia(null);
+                this.loadMedia(null, this.currentUser.user_access);
             } else {
-                this.loadMedia(filter);
+                this.loadMedia(filter, this.currentUser.user_access);
             }
         },
-        loadMedia(filter){
-            let url = (filter == null) ? `api/movies` : `api/movies/filter/${filter}`;
+        loadMedia(filter, access){
+            let url = (filter == null) ? `api/movies/${access}` : `api/movies/${access}/${filter}`;
+
             fetch(url)
             .then(res => res.json())
             .then(data => {
