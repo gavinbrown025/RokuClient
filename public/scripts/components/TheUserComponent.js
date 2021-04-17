@@ -11,8 +11,11 @@ export default {
     },
 
     template: `
-        <div class="user-card" @click="navToHome()">
-            <div class="user-img">
+        <div class="user-card">
+            <div @click="$emit('manageuser', liveuser)" class="manage-user-overlay">
+                <img class="manage-img" src="images/edit.svg" >
+            </div>
+            <div @click="navToHome()" class="user-img">
                 <img :src="'images/' + liveuser.user_avatar">
             </div>
             <p>{{ liveuser.user_fname }}</p>

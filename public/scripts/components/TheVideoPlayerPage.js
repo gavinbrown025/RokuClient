@@ -1,10 +1,19 @@
+
+
+
+
+
+
+
 export default {
     name: 'TheVideoPlayer',
 
     data() {
         return ({
+            timer: null,
             currentMovie: {},
             isPlaying: true,
+            showcontrols: true,
             currentTime: 0,
             volume: 100,
             player: HTMLVideoElement
@@ -13,6 +22,7 @@ export default {
 
     created() {
         this.currentMovie = JSON.parse(localStorage.getItem('selectedMovie'));
+        this.showControls();
     },
 
     mounted() {
@@ -24,11 +34,11 @@ export default {
         <section :player="player" class="video-player">
             <video autoplay ref="mainVideo" class="main-video" :src="'videos/'+currentMovie.movies_trailer"></video>
 
-            <div class="video-overlay-info">
+            <div @mousemove="showControls" :class="{'show-controls' : showcontrols}" class="video-overlay-info">
                 <div class="video-topbar">
                     <h2>{{currentMovie.movies_title}}</h2>
                     <router-link to="/details">
-                        <img src="images/backarrow.svg" alt=""/>
+                        <div class="video-arrow"></div>
                         <span>Back</span>
                     </router-link>
                 </div>
@@ -57,13 +67,22 @@ export default {
     `,
 
     methods: {
+        showControls(){
+            clearTimeout(this.timer);
+            this.showcontrols = true;
+            this.timer = setTimeout(() => {
+                this.showcontrols = false;
+            }, 2000);
+        },
         play() {
             this.player.play();
             this.isPlaying = true;
+            this.showControls();
         },
         pause() {
             this.player.pause();
             this.isPlaying = false;
+            this.showcontrols = true;
         },
         stop() {
             this.player.pause();

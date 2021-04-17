@@ -56,7 +56,8 @@ textarea {
 	border-radius: 2px;
 }
 
-input {
+input,
+textarea {
 	color: $white;
 	background: rgba($white, 0.25);
 	font-size: 1.2rem;

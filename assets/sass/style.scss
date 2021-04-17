@@ -5,10 +5,10 @@
 
 @import "components/_header.scss";
 
-@import "components/_avatar.scss";
-
 @import "components/_login.scss";
 @import "components/_signup.scss";
+
+@import "components/_avatar.scss";
 
 @import "components/_users.scss";
 @import "components/_adduser.scss";
@@ -19,9 +19,10 @@
 @import "components/_allmovies.scss";
 
 @import "components/_details.scss";
+@import "components/_comments.scss";
 
 @import "components/_videoPlayer.scss";
 
-@import "components/_musicPlayer.scss";
-
 @import "components/_kids.scss";
+
+@import "components/_musicPlayer.scss";

@@ -23,22 +23,40 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	width: 100;
+	margin-bottom: 1rem;
+	&.manage .manage-img {
+		display: inherit;
+	}
+}
+
+.manage-img {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	transition: transform 250ms ease-in-out;
+}
+
+.users .kids-avatar .manage-img {
+	display: none;
 }
 
 .user-card {
+	position: relative;
 	cursor: pointer;
 	min-height: 180px;
 	min-width: 180px;
 	margin: 0 2rem;
 	text-align: center;
 	&.add,
-	&.kids {
+	&.kids-avatar {
 		.user-img {
 			border: none;
 		}
 	}
-	&:hover .user-img {
+	&:hover .user-img,
+	&:hover .manage-img {
 		transform: scale(1.05);
 	}
 	.user-img {

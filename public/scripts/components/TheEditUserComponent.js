@@ -4,18 +4,20 @@ export default {
 
     name: "TheEditUserComponent",
 
+    props: ['user'],
+
     data() {
         return {
-            title: "Add User",
             avatarList:[],
             showAvatars: false,
             userData: {
+                id: null,
                 fname: "",
                 avatar: "",
                 admin: 0,
                 access: 5,
             },
-            addusermessage: ""
+            message: ""
         }
     },
 
@@ -23,12 +25,20 @@ export default {
         fetch(`/ums/avatar`)
         .then(res => res.json())
         .then(data => this.avatarList = data);
+
+        if(this.user.liveuser.user_id){
+            this.userData.id = this.user.liveuser.user_id;
+            this.userData.fname = this.user.liveuser.user_fname;
+            this.userData.avatar = this.user.liveuser.user_avatar;
+            this.userData.admin = this.user.liveuser.user_admin;
+            this.userData.access = this.user.liveuser.user_access;
+        }
     },
 
     template: `
         <section class="adduser-con">
             <div class="adduser-wrapper">
-                <h2>{{title}}</h2>
+                <h2>{{user.title}}</h2>
                 <form id="adduser-form" @submit.prevent="addUser()" class="adduser">
 
                     <div v-if="userData.avatar" @click="seeAvatars" class="avatar-img">
@@ -60,10 +70,11 @@ export default {
                     </div>
                 </form>
 
-                <p>{{addusermessage}}</p>
+                <p>{{message}}</p>
 
                 <div class="adduser-buttons">
-                    <a class="button" @click.prevent="addUser()" href="">Save</a>
+                    <a v-if="user.liveuser.user_id" @click.prevent="addUser('edituser')" class="button">Save</a>
+                    <a v-else @click.prevent="addUser('adduser')" class="button">Save</a>
                     <a class="button" @click.prevent="$emit('closeedituser')"href="">Cancel</a>
                 </div>
             </div>
@@ -78,7 +89,7 @@ export default {
     `,
 
     methods: {
-        addUser() {
+        addUser(type) {
             if (this.userData.fname !=""){
 
                 this.userData.admin = (this.userData.admin) ? 1 : 0;
@@ -90,9 +101,12 @@ export default {
                     access: this.userData.access,
                     avatar: this.userData.avatar,
                     account: account,
+                    id: this.userData.id
                 });
 
-                fetch(`ums/adduser`, {
+                let url = `ums/${type}`;
+
+                fetch(url, {
                     method: 'POST',
                     body: userData,
                     headers: {
@@ -102,21 +116,20 @@ export default {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    this.addusermessage = data.message;
+                    this.message = data.message;
+
                     if(data.success){
                         setTimeout(() =>{
                             this.$router.go();
-                        },2000)
+                        },1000)
                     }
                 })
                 .catch(err => console.log(err));
             } else {
-                this.addusermessage = "You have to put a name at least";
+                this.message = "You have to put a name at least";
             }
         },
-        editUser(){
 
-        },
         seeAvatars(){
             this.showAvatars = this.showAvatars ? false : true;
         },
