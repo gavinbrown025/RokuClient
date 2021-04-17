@@ -32,6 +32,12 @@
 	min-width: 180px;
 	margin: 0 2rem;
 	text-align: center;
+	&.add,
+	&.kids {
+		.user-img {
+			border: none;
+		}
+	}
 	&:hover .user-img {
 		transform: scale(1.05);
 	}
@@ -42,9 +48,6 @@
 		height: 185px;
 		border-radius: 50%;
 		transition: transform 250ms ease-in-out;
-		&.add {
-			border: none;
-		}
 		img {
 			height: 100%;
 			width: 100%;

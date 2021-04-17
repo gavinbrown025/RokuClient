@@ -1,9 +1,17 @@
-@mixin bgGradRadial() {
+@mixin bgGradRadial($kids: false) {
 	background: rgb(121, 114, 253);
-	background: -moz-radial-gradient(top, ellipse cover, rgb(86, 80, 211) 0%, rgba(10, 7, 25, 1) 99%);
-	background: -webkit-radial-gradient(top, ellipse cover, rgba(86, 80, 211, 1) 0%, rgba(10, 7, 25, 1) 99%);
-	background: radial-gradient(ellipse at top, rgba(86, 80, 211, 1) 0%, rgba(10, 7, 25, 1) 99%);
+	background: -moz-radial-gradient(top, ellipse cover, rgb(86, 80, 211) 0%, rgb(10, 7, 25) 100%);
+	background: -webkit-radial-gradient(top, ellipse cover, rgba(86, 80, 211, 1) 0%, rgb(10, 7, 25) 100%);
+	background: radial-gradient(ellipse at top, rgba(86, 80, 211, 1) 0%, rgb(10, 7, 25) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7972fd', endColorstr='#0a0719',GradientType=1 );
+
+	@if $kids {
+		background: rgb(233, 70, 70);
+		background: -moz-radial-gradient(top, ellipse cover, rgb(252, 207, 58) 0%, rgb(216, 21, 21) 100%);
+		background: -webkit-radial-gradient(top, ellipse cover, rgb(252, 207, 58) 0%, rgb(216, 21, 21) 100%);
+		background: radial-gradient(ellipse at top, rgb(252, 207, 58) 0%, rgb(216, 21, 21) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7972fd', endColorstr='#0a0719',GradientType=1 );
+	}
 }
 
 @mixin gradientFade($flip: false) {

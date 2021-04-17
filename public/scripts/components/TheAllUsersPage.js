@@ -15,10 +15,17 @@ export default {
 			</div>
 
             <div class="users">
-			    <user class="user-card" v-for="(user, index) in userList" :liveuser="user" :key="index"></user>
+			    <user v-for="(user, index) in userList" :liveuser="user" :key="index"></user>
+                <user class="kids"
+                    :liveuser="{
+                        user_avatar:'kids_avatar.svg',
+                        user_fname:'Kids',
+                        user_access: 2,
+                    }">
+                </user>
 
-                <div class="user-card" @click="editUserLB">
-                    <div class="user-img add">
+                <div class="user-card add" @click="editUserLB">
+                    <div class="user-img">
                         <img src="images/add_user.svg">
                     </div>
                     <p>Add user</p>

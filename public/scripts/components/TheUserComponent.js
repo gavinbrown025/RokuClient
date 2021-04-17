@@ -11,7 +11,7 @@ export default {
     },
 
     template: `
-        <div @click="navToHome()">
+        <div class="user-card" @click="navToHome()">
             <div class="user-img">
                 <img :src="'images/' + liveuser.user_avatar">
             </div>

@@ -1,11 +1,11 @@
 body {
-	@include bgGradRadial;
-	background-attachment: fixed;
 	font-family: "Nunito", sans-serif;
 	color: $white;
 	overflow-x: hidden;
 }
 main {
+	@include bgGradRadial;
+	background-attachment: fixed;
 	width: 100%;
 	min-height: 100vh;
 	max-width: 2400px;

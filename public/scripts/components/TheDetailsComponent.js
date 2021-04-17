@@ -13,7 +13,7 @@ export default {
 
         let pushedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
 
-         fetch(`api/movies/${pushedMovie.movies_id}`)
+         fetch(`api/movies/select/${pushedMovie.movies_id}`)
             .then(res => res.json())
             .then(data => {
                 this.selectedMovie = data;

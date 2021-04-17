@@ -36,7 +36,7 @@ export default {
                         <p>Select Avatar</p>
                     </div>
 
-                    <div v-else @click="seeAvatars" class="adduser-img">
+                    <div v-else @click="seeAvatars" class="avatar-img">
                         <img src="images/add_user.svg" alt="add user icon">
                         <p>Select Avatar</p>
                     </div>
@@ -51,12 +51,12 @@ export default {
                             <input v-model="userData.access" name="maturity" type="radio" checked value="5">
                             <label for="maturity">Adult</label>
 
-                            <input v-model="userData.access" name="maturity" type="radio" value="3">
+                            <input v-model="userData.access" name="maturity" type="radio" value="2">
                             <label for="maturity">Child</label>
                         </div>
 
-                        <label for="admin">Admin:</label>
-                        <input v-model="userData.admin" name="admin" type="checkbox" value="1">
+                        <label v-if="userData.access > 2" for="admin">Admin:</label>
+                        <input v-if="userData.access > 2" v-model="userData.admin" name="admin" type="checkbox" value="1">
                     </div>
                 </form>
 
