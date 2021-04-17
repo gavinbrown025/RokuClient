@@ -1,4 +1,5 @@
 import TheHeader from './TheHeaderComponent.js';
+import TheComments from './TheCommentComponent.js';
 export default {
     name: 'MovieDetailsComponent',
 
@@ -57,6 +58,7 @@ export default {
                         <p>Studio: <span>{{selectedMovie.movies_studio}}</span></p>
                     </div>
                 </div>
+                <comments :movie="selectedMovie.movies_id" :key="selectedMovie.movies_id" />
             </section>
         </div>
     `,
@@ -77,5 +79,6 @@ export default {
     },
     components:{
         theheader: TheHeader,
+        comments: TheComments
     }
 }

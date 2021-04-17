@@ -1,0 +1,41 @@
+.comments-con {
+	display: flex;
+	flex-direction: column;
+	padding: 0 2rem;
+}
+
+#comments-form {
+	display: flex;
+	align-items: center;
+	textarea {
+		flex-grow: 1;
+		height: 4rem;
+		margin-right: 1rem;
+	}
+}
+
+.all-comments-con {
+	background: rgba($bgcolor, 0.25);
+	display: flex;
+	flex-direction: column;
+	padding: 1rem 2rem 2rem 2rem;
+	margin-bottom: 3rem;
+	border-radius: 4px;
+}
+
+.comment {
+	padding: 1rem;
+	border-bottom: 2px solid $white;
+	h3 {
+		font-weight: bold;
+		font-size: 1.5rem;
+	}
+	span {
+		font-size: 1.2rem;
+		font-weight: normal;
+	}
+	p {
+		font-size: 1.2rem;
+		padding: 0.5rem;
+	}
+}

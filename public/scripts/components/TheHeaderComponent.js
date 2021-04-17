@@ -84,7 +84,7 @@ export default {
                 </div>
             </div>
 
-            <edit-user @closeedituser="editUserLB" v-if="showEditUser"/>
+            <edit-user :user="{title: 'Edit User', liveuser}" @closeedituser="editUserLB" v-if="showEditUser"/>
         </header>
     `,
     methods: {
