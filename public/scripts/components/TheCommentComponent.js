@@ -47,29 +47,35 @@ export default {
             })
         },
         postComment() {
-            let commentData = JSON.stringify({
-                name: this.newComment.name,
-                comment: this.newComment.comment,
-                movie: this.movie.movies_id
-            });
+            if (this.newComment.comment !=""){
 
-            //! req.body keeps coming back undefined...
+                let commentData = JSON.stringify({
+                    name: this.newComment.name,
+                    comment: this.newComment.comment,
+                    movie: this.movie.movies_id
+                });
 
-            fetch('api/comment', {
-                method: 'POST',
-                body: commentData,
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(err => console.log(err));
+                //! req.body keeps coming back undefined...
+                let url = '/api/comment';
 
-            this.getComments();
+                debugger;
+
+                fetch(url, {
+                    method: 'POST',
+                    body: commentData,
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(err => console.log(err));
+            }
+
+            //this.getComments();
         }
     }
 }
