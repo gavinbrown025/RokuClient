@@ -18,6 +18,18 @@
 	}
 }
 
+.adduser-header {
+	display: flex;
+	justify-content: space-between;
+	a {
+		height: min-content;
+		width: max-content;
+		background: rgb(134, 19, 19);
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+	}
+}
+
 #adduser-form {
 	display: flex;
 	justify-content: space-between;

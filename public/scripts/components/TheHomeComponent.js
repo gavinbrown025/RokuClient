@@ -25,7 +25,7 @@ export default {
         .then(res => res.json())
         .then(data => {
             data.forEach(genre => {
-                this.sortedMedia.push({title: genre.genre_name, id: genre.genre_id, movies:[]});
+                this.sortedMedia.push({genre: genre.genre_name, id: genre.genre_id, movies:[]});
             });
         });
 
@@ -48,11 +48,10 @@ export default {
         },
 
         sortMedia(data) {
-
             data.forEach(movie =>{
                 movie.movies_genre.forEach(moviegenre => {
                     this.sortedMedia.forEach((genre, index) =>{
-                        if(moviegenre == genre.title){
+                        if(moviegenre == genre.genre){
                             this.sortedMedia[index].movies.push(movie);
                         }
                     })
@@ -64,16 +63,10 @@ export default {
     template:`
         <div>
             <section class="landing">
-
-                <theheader
-                    @logout="$emit('logout')">
-                </theheader>
-
+                <theheader @logout="$emit('logout')"></theheader>
                 <landing :featuredMovie="currentMedia" key="currentMedia.movies_name" class="landing-hero"></landing>
             </section>
-
-            <sliders :media="sortedMedia">
-            </sliders>
+            <sliders :media="sortedMedia"></sliders>
         </div>
     `,
 

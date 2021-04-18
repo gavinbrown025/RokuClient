@@ -66,6 +66,10 @@ export default {
         editUserLB(user){
             this.showEditUser = this.showEditUser ? false : true;
 
+            if(user === 'close'){
+                this.liveuser = {};
+                return;
+            }
             if(typeof user !== 'string'){
                 this.liveuser = user;
                 this.title = 'Edit User';

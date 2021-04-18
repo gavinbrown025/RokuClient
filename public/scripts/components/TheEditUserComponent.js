@@ -26,7 +26,7 @@ export default {
         .then(res => res.json())
         .then(data => this.avatarList = data);
 
-        if(this.user.liveuser.user_id){
+        if(typeof this.user.liveuser != 'undefined'){
             this.userData.id = this.user.liveuser.user_id;
             this.userData.fname = this.user.liveuser.user_fname;
             this.userData.avatar = this.user.liveuser.user_avatar;
@@ -37,10 +37,13 @@ export default {
 
     template: `
         <section class="adduser-con">
-            <div class="adduser-wrapper">
-                <h2>{{user.title}}</h2>
-                <form id="adduser-form" @submit.prevent="addUser()" class="adduser">
+            <div  class="adduser-wrapper">
+                <div class="adduser-header">
+                    <h2>{{user.title}}</h2>
+                    <a v-if="user.liveuser.user_id && !user.liveuser.user_email" @click.prevent="deleteUser()" class="user-delete">Delete</a>
+                </div>
 
+                <form id="adduser-form" @submit.prevent="addUser()" class="adduser">
                     <div v-if="userData.avatar" @click="seeAvatars" class="avatar-img">
                         <img :src="'images/'+userData.avatar" alt="add user icon">
                         <p>Select Avatar</p>
@@ -52,15 +55,13 @@ export default {
                     </div>
 
                     <div class="adduser-inputs">
-                        <label>Name</label>
+                        <label>Name:</label>
                         <input v-model="userData.fname" name="name" type="text">
 
                         <div class="maturity">
                             <p>Maturity:</p>
-
                             <input v-model="userData.access" name="maturity" type="radio" checked value="5">
                             <label for="maturity">Adult</label>
-
                             <input v-model="userData.access" name="maturity" type="radio" value="2">
                             <label for="maturity">Child</label>
                         </div>
@@ -75,7 +76,7 @@ export default {
                 <div class="adduser-buttons">
                     <a v-if="user.liveuser.user_id" @click.prevent="addUser('edituser')" class="button">Save</a>
                     <a v-else @click.prevent="addUser('adduser')" class="button">Save</a>
-                    <a class="button" @click.prevent="$emit('closeedituser')"href="">Cancel</a>
+                    <a class="button" @click.prevent="$emit('closeedituser', 'close')">Cancel</a>
                 </div>
             </div>
 
@@ -128,6 +129,29 @@ export default {
             } else {
                 this.message = "You have to put a name at least";
             }
+        },
+        deleteUser() {
+
+            let id = JSON.stringify({id: this.userData.id});
+
+            fetch('ums/deleteuser', {
+                method: 'POST',
+                body: id,
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                this.message = data.message;
+                if(data.success){
+                    setTimeout(() =>{
+                        this.$router.go();
+                    },1000)
+                }
+            })
+            .catch(err => console.log(err));
         },
 
         seeAvatars(){
