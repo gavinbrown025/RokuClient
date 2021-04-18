@@ -18,21 +18,23 @@ export default {
         this.currentUser = JSON.parse(localStorage.getItem('cacheduser'));
         this.movie = JSON.parse(localStorage.getItem('selectedMovie'))
 
-        this.newComment.name = this.currentUser.user_name;
-
+        this.newComment.name = this.currentUser.user_fname;
         this.getComments(this.movie.movies_id);
     },
 
     template:`
         <section class="comments-con">
             <form id="comments-form" @submit.prevent="postComment">
-                <textarea v-model="newComment.comment" name="comment"></textarea>
-                <a class="button" @click.prevent="postComment">Comment</a>
+                <textarea v-model="newComment.comment" name="comment" placeholder="Leave a Comment"></textarea>
+                <button type="submit" class="button" @submit.prevent="postComment">Comment</button>
             </form>
             <div class="all-comments-con">
-                <div v-for="comment in retrievedComments" class="comment">
+                <div v-if="retrievedComments.length" v-for="comment in retrievedComments" class="comment">
                     <h3>{{comment.user_name}} <span>- {{comment.time}}</span></h3>
                     <p>{{comment.comment}}</p>
+                </div>
+                <div v-else class="comment">
+                    <h3>Be the first to comment</h3>
                 </div>
             </div>
         </section>
@@ -55,12 +57,7 @@ export default {
                     movie: this.movie.movies_id
                 });
 
-                //! req.body keeps coming back undefined...
-                let url = '/api/comment';
-
-                debugger;
-
-                fetch(url, {
+                fetch('/api/comment', {
                     method: 'POST',
                     body: commentData,
                     headers: {
@@ -70,12 +67,13 @@ export default {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    if(data.success){
+                        this.getComments(this.movie.movies_id)
+                    }
                 })
                 .catch(err => console.log(err));
             }
 
-            //this.getComments();
         }
     }
 }
