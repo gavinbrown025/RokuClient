@@ -4,7 +4,7 @@ import TheMovieThumbnail from './TheMovieThumbnailComponent.js';
 export default {
     name: "TheSliderComponent",
 
-    props:['moviesByYear'],
+    props:['media'],
 
     mounted() {
         setTimeout(() => {
@@ -30,12 +30,12 @@ export default {
 
     template:`
         <section class="slider" >
-            <div v-for="era in moviesByYear">
-                <h2 class="catagory-title">{{era.title}}</h2>
+            <div v-if="genre.movies.length" v-for="genre in media">
+                <h2 class="catagory-title">{{genre.title}}</h2>
 
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                        <moviethumb class="swiper-slide" @showmovie="showMovie" v-for="item in era.movies" :movie="item" :key="item.id"></moviethumb>
+                        <moviethumb v-for="item in genre.movies" class="swiper-slide" :movie="item" :key="item.id"></moviethumb>
                     </div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
@@ -44,12 +44,6 @@ export default {
             </div>
         </section>
     `,
-
-    methods: {
-        showMovie(movie){
-            console.log(movie);
-        }
-    },
 
     components: {
         moviethumb: TheMovieThumbnail,
