@@ -24,7 +24,7 @@ Server Repo - https://github.com/gavinbrown025/BrownG_HodgesK_RokuServer
 You need MAMP, WAMP, XAMP, or an equivelant to run the app. 
 Copy the repo to the file location of your choice. 
 Import the database from config folder to your sql database engine: phpmyadmin, MySql Workbench, etc.
-Chance the config/sqlCreds.js file to match your credentials. 
+Change the config/userCreds.js file to match your credentials. 
 Run npm install on package.json file in both repos.
 Run npm start on both files and go to localhost:5050 
 
