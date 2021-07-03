@@ -15,7 +15,8 @@ export default {
             isPlaying: true,
             showcontrols: true,
             currentTime: 0,
-            volume: 100,
+            volume: 1,
+            volumeSlider: 100,
             player: HTMLVideoElement
         })
     },
@@ -57,7 +58,7 @@ export default {
                         <img src="images/stop.svg" class="stop" @click="stop" />
                         <img v-if="volume == 0" src="images/mute.svg" @click="mute" class="mute-btn">
                         <img v-else src="images/sound.svg" @click="mute" class="mute-btn">
-                        <input class="volume-bar" type="range" value="100" @input="volumeSet">
+                        <input v-model="volumeSlider" class="volume-bar" type="range" @input="volumeSet">
                     </div>
                 </div>
 
@@ -93,12 +94,12 @@ export default {
             if(this.volume > 0){
                 this.volume = 0;
             } else {
-                this.volume = 1;
+                this.volume = this.volumeSlider / 100;
             }
             this.player.volume = this.volume;
         },
         volumeSet(e){
-            this.volume = e.target.value / 100;
+            this.volume = this.volumeSlider / 100;
             this.player.volume = this.volume;
         },
 
