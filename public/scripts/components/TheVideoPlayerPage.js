@@ -1,39 +1,32 @@
-
-
-
-
-
-
-
 export default {
-    name: 'TheVideoPlayer',
+	name: 'TheVideoPlayer',
 
-    data() {
-        return ({
-            timer: null,
-            currentMovie: {},
-            isPlaying: true,
-            showcontrols: true,
-            currentTime: 0,
-            volume: 1,
-            volumeSlider: 100,
-            player: HTMLVideoElement
-        })
-    },
+	data() {
+		return {
+			timer: null,
+			currentMovie: {},
+			isPlaying: true,
+			showcontrols: true,
+			currentTime: 0,
+			volume: 1,
+			volumeSlider: 100,
+			player: HTMLVideoElement,
+		}
+	},
 
-    created() {
-        this.currentMovie = JSON.parse(localStorage.getItem('selectedMovie'));
-        this.showControls();
-    },
+	created() {
+		this.currentMovie = JSON.parse(localStorage.getItem('selectedMovie'))
+		this.showControls()
+	},
 
-    mounted() {
-        this.player = this.$refs.mainVideo;
-        this.addEventListener();
-    },
+	mounted() {
+		this.player = this.$refs.mainVideo
+		this.addEventListener()
+	},
 
-    template: `
+	template: `
         <section :player="player" class="video-player">
-            <video autoplay ref="mainVideo" class="main-video" :src="'videos/'+currentMovie.movies_trailer"></video>
+            <video autoplay ref="mainVideo" class="main-video" :src="'/api/movies/stream/'+currentMovie.movies_trailer"></video>
 
             <div @mousemove="showControls" :class="{'show-controls' : showcontrols}" class="video-overlay-info">
                 <div class="video-topbar">
@@ -67,64 +60,64 @@ export default {
         </section>
     `,
 
-    methods: {
-        showControls(){
-            clearTimeout(this.timer);
-            this.showcontrols = true;
-            this.timer = setTimeout(() => {
-                this.showcontrols = false;
-            }, 2000);
-        },
-        play() {
-            this.player.play();
-            this.isPlaying = true;
-            this.showControls();
-        },
-        pause() {
-            this.player.pause();
-            this.isPlaying = false;
-            this.showcontrols = true;
-        },
-        stop() {
-            this.player.pause();
-            this.player.currentTime = 0;
-            this.isPlaying = false;
-        },
-        mute(){
-            if(this.volume > 0){
-                this.volume = 0;
-            } else {
-                this.volume = this.volumeSlider / 100;
-            }
-            this.player.volume = this.volume;
-        },
-        volumeSet(e){
-            this.volume = this.volumeSlider / 100;
-            this.player.volume = this.volume;
-        },
+	methods: {
+		showControls() {
+			clearTimeout(this.timer)
+			this.showcontrols = true
+			this.timer = setTimeout(() => {
+				this.showcontrols = false
+			}, 2000)
+		},
+		play() {
+			this.player.play()
+			this.isPlaying = true
+			this.showControls()
+		},
+		pause() {
+			this.player.pause()
+			this.isPlaying = false
+			this.showcontrols = true
+		},
+		stop() {
+			this.player.pause()
+			this.player.currentTime = 0
+			this.isPlaying = false
+		},
+		mute() {
+			if (this.volume > 0) {
+				this.volume = 0
+			} else {
+				this.volume = this.volumeSlider / 100
+			}
+			this.player.volume = this.volume
+		},
+		volumeSet(e) {
+			this.volume = this.volumeSlider / 100
+			this.player.volume = this.volume
+		},
 
-        getCurrentTime(time) {
-            let minute = Math.floor(time / 60);
-            let second = Math.floor(time - minute * 60);
-            second = second > 9 ? second : `0${second}`;
-            minute = minute > 9 ? minute : `0${minute}`;
-            let formatTime = `${minute}:${second}`;
-            return formatTime;
-        },
+		getCurrentTime(time) {
+			let minute = Math.floor(time / 60)
+			let second = Math.floor(time - minute * 60)
+			second = second > 9 ? second : `0${second}`
+			minute = minute > 9 ? minute : `0${minute}`
+			let formatTime = `${minute}:${second}`
+			return formatTime
+		},
 
-        timeTrack() {
-            this.$refs.timePos.value = (this.player.currentTime / this.player.duration) * 100;
-            this.currentTime = this.player.currentTime;
-        },
+		timeTrack() {
+			this.$refs.timePos.value = (this.player.currentTime / this.player.duration) * 100
+			this.currentTime = this.player.currentTime
+		},
 
-        updatePlayTime(e) {
-            let scrubTime = (e.target.value * this.player.duration) / 100;
-            this.player.currentTime = scrubTime;
-        },
+		updatePlayTime(e) {
+			let scrubTime = (e.target.value * this.player.duration) / 100
+			this.player.currentTime = scrubTime
+		},
 
-        addEventListener() {
-            this.player.addEventListener("timeupdate", this.timeTrack);
-            this.$refs.timePos.addEventListener("input", this.updatePlayTime);
-        },
-    }
+		addEventListener() {
+			this.player.addEventListener('timeupdate', this.timeTrack)
+			this.$refs.timePos.addEventListener('input', this.updatePlayTime)
+		},
+	},
 }

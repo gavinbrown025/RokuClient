@@ -28,7 +28,7 @@ export default {
                 <theheader @logout="$emit('logout')" />
 
                 <div class="details-video-con">
-                    <video autoplay loop ref="preiviewPlayer" :src="'videos/'+selectedMovie.movies_trailer"></video>
+                    <video autoplay loop ref="preiviewPlayer" :src="'api/movies/stream/'+selectedMovie.movies_trailer"></video>
                     <img v-if="volume == 0" src="images/mute.svg" @click="mute" class="mute-btn">
                     <img v-else src="images/sound.svg" @click="mute" class="mute-btn">
                 </div>
@@ -36,7 +36,7 @@ export default {
                 <div class="details-info-con">
                     <div class="details-play">
                         <h2>{{selectedMovie.movies_title}}</h2>
-                        <router-link :to="{name: 'video'}" class="button">PLAY MOVIE</router-link>
+                        <router-link :to="{name: 'video'}" class="button">PLAY</router-link>
                     </div>
 
                     <div class="details-info">
