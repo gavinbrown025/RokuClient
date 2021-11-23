@@ -10,7 +10,6 @@ import TheVideoPlayerPage from './components/TheVideoPlayerPage.js';
 
 import TheMusicPage from './components/TheMusicPage.js';
 
-
 const router = new VueRouter({
     routes: [
         {path: '/', name: 'root', component: TheLoginPage, beforeEnter: (to, from, next) => {
