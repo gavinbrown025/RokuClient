@@ -1,19 +1,19 @@
-import TheHeader from './TheHeaderComponent.js';
+import TheHeader from './TheHeaderComponent.js'
 
 export default {
-    name: "TheLoginComponent",
+	name: 'TheLoginComponent',
 
-    data() {
-        return {
-            loginInput:{
-                username: "",
-                password: "",
-            },
-            loginmessage: "",
-        }
-    },
+	data() {
+		return {
+			loginInput: {
+				username: '',
+				password: '',
+			},
+			loginmessage: '',
+		}
+	},
 
-    template:`
+	template: `
         <section class="login-con">
             <theheader></theheader>
             <form @submit.prevent="login()" id="login-form">
@@ -30,44 +30,38 @@ export default {
         </section>
     `,
 
-    methods: {
-        login() {
-            if (this.loginInput.username !="" && this.loginInput.password !=""){
+	methods: {
+		login() {
+			if (this.loginInput.username == '' && this.loginInput.password == '') return (this.loginmessage = 'Please fill in required fields')
 
-                let loginData = JSON.stringify({
-                    username: this.loginInput.username,
-                    password: this.loginInput.password
-                });
+			this.loginmessage = '...Loading'
 
-                let url = `/ums/admin/login`;
+			let loginData = JSON.stringify({ ...this.loginInput })
+			let url = `/ums/admin/login`
 
-                fetch(url, {
-                    method: 'POST',
-                    body: loginData,
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if(data.message) {
-                        console.warn("user doesnt exist or something broke");
-                        this.loginmessage = data.message;
-                    } else {
-                        window.localStorage.setItem("account", data.account_id);
-                        this.$router.replace({name: "users"});
-                    }
-                })
-                .catch(err => console.log(err));
+			fetch(url, {
+				method: 'POST',
+				body: loginData,
+				headers: {
+					Accept: 'application/json, text/plain, */*',
+					'Content-Type': 'application/json',
+				},
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					if (data.message) {
+						console.warn('user doesnt exist or something broke')
+						this.loginmessage = data.message
+					} else {
+						window.localStorage.setItem('account', data.account_id)
+						this.$router.replace({ name: 'users' })
+					}
+				})
+				.catch((err) => console.log(err))
+		},
+	},
 
-            } else {
-                this.loginmessage = "Please fill in required fields";
-            }
-        },
-    },
-
-    components: {
-        theheader: TheHeader,
-    }
+	components: {
+		theheader: TheHeader,
+	},
 }

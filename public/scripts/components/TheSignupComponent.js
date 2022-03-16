@@ -1,27 +1,27 @@
-import TheAvatarComponent from "./TheAvatarComponent.js";
-import TheHeader from './TheHeaderComponent.js';
+import TheAvatarComponent from './TheAvatarComponent.js'
+import TheHeader from './TheHeaderComponent.js'
 
 export default {
-    name: "TheSignupComponent",
+	name: 'TheSignupComponent',
 
-data() {
-        return {
-            signupData:{
-                fname:"",
-                username: "",
-                password: "",
-                email: "",
-                avatar: "",
-                admin: 1,
-                access: 5,
-                account: window.crypto.getRandomValues(new Uint32Array(1))[0]
-            },
-            signupmessage: "",
-            showAvatars: false,
-        }
-    },
+	data() {
+		return {
+			signupData: {
+				fname: '',
+				username: '',
+				password: '',
+				email: '',
+				avatar: '',
+				admin: 1,
+				access: 5,
+				account: window.crypto.getRandomValues(new Uint32Array(1))[0],
+			},
+			signupmessage: '',
+			showAvatars: false,
+		}
+	},
 
-    template: `
+	template: `
         <section class="signup-con">
             <theheader></theheader>
             <form id="signup-form" @submit.prevent="signup()" class="signup">
@@ -65,53 +65,43 @@ data() {
 
         </section>
     `,
-    methods: {
-        signup(){
-            let signupData = JSON.stringify({
-                fname: this.signupData.fname,
-                username: this.signupData.username,
-                password: this.signupData.password,
-                email: this.signupData.email,
-                avatar: this.signupData.avatar,
-                admin: this.signupData.admin,
-                access: this.signupData.access,
-                account: this.signupData.account,
-            });
+	methods: {
+		signup() {
+			let signupData = JSON.stringify({ ...this.signupData })
+			let url = `/ums/admin/signup`
 
-            let url = `/ums/admin/signup`;
+			fetch(url, {
+				method: 'POST',
+				body: signupData,
+				headers: {
+					Accept: 'application/json, text/plain, */*',
+					'Content-Type': 'application/json',
+				},
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					this.signupmessage = data.message
+					if (data.success) {
+						window.localStorage.setItem('account', this.signupData.account)
+						setTimeout(() => {
+							this.$router.replace({ name: 'users' })
+						}, 1500)
+					}
+				})
+				.catch((err) => console.log(err))
+		},
 
-            fetch(url, {
-                method: 'POST',
-                body: signupData,
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                this.signupmessage = data.message;
-                if(data.success){
-                    window.localStorage.setItem("account", this.signupData.account);
-                    setTimeout(() =>{
-                        this.$router.replace({name:'users'});
-                    },1500)
-                }
-            })
-            .catch(err => console.log(err));
-        },
+		seeAvatars() {
+			this.showAvatars = this.showAvatars ? false : true
+		},
 
-        seeAvatars(){
-            this.showAvatars = this.showAvatars ? false : true;
-        },
-
-        selectAvatar(avatar){
-            this.signupData.avatar = avatar;
-            this.showAvatars = false;
-        }
-    },
-    components:{
-        theheader: TheHeader,
-        'avatar-select': TheAvatarComponent
-    }
+		selectAvatar(avatar) {
+			this.signupData.avatar = avatar
+			this.showAvatars = false
+		},
+	},
+	components: {
+		theheader: TheHeader,
+		'avatar-select': TheAvatarComponent,
+	},
 }
